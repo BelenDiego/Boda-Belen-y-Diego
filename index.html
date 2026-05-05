@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Belén & Diego | Invitación</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --cream:#fbf5ec;
+  --paper:#fffaf2;
+  --olive:#4f5f43;
+  --olive-soft:#6b775a;
+  --gold:#c9a96a;
+  --soft:#eadcc8;
+  --text:#443a31;
+}
+
+* { box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  margin:0;
+  background:
+    radial-gradient(circle at 8% 8%, rgba(201,169,106,.18), transparent 28%),
+    radial-gradient(circle at 92% 90%, rgba(79,95,67,.12), transparent 30%),
+    var(--cream);
+  font-family:'Montserrat', sans-serif;
+  color:var(--text);
+}
+
+/* Pantalla inicial: en web real funciona mejor porque el clic del usuario habilita el audio */
+.intro {
+  position:fixed;
+  inset:0;
+  z-index:999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:24px;
+  color:white;
+  background:
+    linear-gradient(rgba(18,18,14,.30), rgba(18,18,14,.62)),
+    url('photo.jpg') center/cover no-repeat;
+}
+
+.intro.hide {
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transition:.9s ease;
+}
+
+.intro-card {
+  max-width:600px;
+  padding:34px 28px;
+  border-radius:34px;
+  border:1px solid rgba(255,255,255,.58);
+  background:rgba(255,255,255,.13);
+  backdrop-filter: blur(5px);
+  box-shadow:0 24px 80px rgba(0,0,0,.34);
+}
+
+.intro-title {
+  font-family:'Great Vibes', cursive;
+  font-size:72px;
+  line-height:.95;
+  margin:0;
+  text-shadow:0 2px 18px rgba(0,0,0,.38);
+}
+
+.intro-sub {
+  font-family:'Cormorant Garamond', serif;
+  font-size:25px;
+  margin:12px 0 24px;
+}
+
+button, .btn {
+  border:0;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  text-decoration:none;
+  padding:14px 25px;
+  border-radius:999px;
+  font-family:'Montserrat', sans-serif;
+  font-weight:600;
+  font-size:15px;
+  background:var(--olive);
+  color:white;
+  box-shadow:0 14px 32px rgba(43,52,35,.22);
+  transition:.22s ease;
+}
+
+button:hover, .btn:hover {
+  transform:translateY(-2px);
+  box-shadow:0 18px 40px rgba(43,52,35,.28);
+}
+
+.page {
+  max-width:980px;
+  margin:0 auto;
+  background:var(--paper);
+  min-height:100vh;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 0 80px rgba(81,60,37,.14);
+}
+
+.flower {
+  position:absolute;
+  width:230px;
+  height:230px;
+  pointer-events:none;
+  opacity:.86;
+  z-index:2;
+  background:
+    radial-gradient(circle at 48% 44%, #fff6e6 0 11px, transparent 12px),
+    radial-gradient(circle at 38% 37%, #fffaf2 0 17px, transparent 18px),
+    radial-gradient(circle at 58% 35%, #fffaf2 0 16px, transparent 17px),
+    radial-gradient(circle at 62% 52%, #fffaf2 0 16px, transparent 17px),
+    radial-gradient(circle at 42% 58%, #fffaf2 0 15px, transparent 16px),
+    radial-gradient(ellipse at 22% 44%, rgba(79,95,67,.48) 0 15px, transparent 16px),
+    radial-gradient(ellipse at 75% 38%, rgba(79,95,67,.42) 0 14px, transparent 15px),
+    radial-gradient(ellipse at 29% 75%, rgba(79,95,67,.30) 0 19px, transparent 20px),
+    radial-gradient(ellipse at 72% 70%, rgba(79,95,67,.28) 0 19px, transparent 20px);
+  filter: drop-shadow(0 6px 12px rgba(70,70,50,.08));
+}
+
+.f1 { top:-52px; left:-46px; transform:rotate(-22deg); }
+.f2 { top:-50px; right:-48px; transform:rotate(22deg); }
+.f3 { bottom:50px; left:-58px; transform:rotate(205deg); }
+.f4 { bottom:30px; right:-60px; transform:rotate(150deg); }
+
+.hero {
+  position:relative;
+  height:540px;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  text-align:center;
+  padding:42px 24px;
+  color:white;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,.04), rgba(0,0,0,.62)),
+    url('photo.jpg') center/cover no-repeat;
+}
+
+.hero::after {
+  content:"";
+  position:absolute;
+  inset:18px;
+  border:1px solid rgba(255,255,255,.45);
+  pointer-events:none;
+}
+
+.hero-content {
+  position:relative;
+  z-index:3;
+  max-width:780px;
+  animation:fadeUp 1.15s ease both;
+}
+
+.hero h1 {
+  font-family:'Great Vibes', cursive;
+  font-size:88px;
+  line-height:.95;
+  margin:0;
+  font-weight:400;
+  text-shadow:0 4px 20px rgba(0,0,0,.42);
+}
+
+.divider {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  margin:14px auto 8px;
+  max-width:360px;
+}
+
+.divider span {
+  height:1px;
+  flex:1;
+  background:rgba(255,255,255,.68);
+}
+
+.heart {
+  color:#e8c985;
+  font-size:22px;
+}
+
+.hero-sub {
+  font-family:'Cormorant Garamond', serif;
+  font-size:31px;
+  margin:8px 0 22px;
+  text-shadow:0 2px 14px rgba(0,0,0,.38);
+}
+
+.music-btn {
+  background:rgba(79,95,67,.88);
+  border:1px solid rgba(255,255,255,.34);
+}
+
+.section {
+  position:relative;
+  padding:48px 42px;
+  text-align:center;
+}
+
+.section.small-pad { padding-top:32px; }
+
+.story {
+  font-family:'Cormorant Garamond', serif;
+  color:var(--olive);
+  font-size:34px;
+  line-height:1.35;
+  max-width:680px;
+  margin:0 auto;
+}
+
+.section-title {
+  text-transform:uppercase;
+  letter-spacing:4px;
+  color:var(--olive);
+  font-size:16px;
+  font-weight:600;
+  margin:0 0 10px;
+}
+
+.gold-line {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  margin:14px auto 24px;
+  max-width:520px;
+}
+
+.gold-line span {
+  height:1px;
+  background:var(--soft);
+  flex:1;
+}
+
+.card {
+  max-width:760px;
+  margin:0 auto;
+  background:rgba(255,253,248,.82);
+  border:1px solid var(--soft);
+  border-radius:28px;
+  padding:26px;
+  box-shadow:0 12px 40px rgba(70,55,35,.06);
+}
+
+.date-card {
+  display:grid;
+  grid-template-columns:1fr auto;
+  align-items:center;
+  gap:22px;
+  text-align:left;
+}
+
+.date-left {
+  display:flex;
+  align-items:center;
+  gap:22px;
+}
+
+.icon-circle {
+  width:72px;
+  height:72px;
+  min-width:72px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:var(--olive);
+  color:white;
+  font-size:35px;
+  box-shadow:0 10px 25px rgba(43,52,35,.18);
+}
+
+.date-main {
+  font-family:'Cormorant Garamond', serif;
+  font-size:32px;
+  color:var(--olive);
+  font-weight:600;
+}
+
+.date-sub {
+  font-family:'Cormorant Garamond', serif;
+  font-size:22px;
+  margin-top:2px;
+}
+
+.countdown {
+  display:flex;
+  gap:15px;
+  align-items:center;
+}
+
+.time-box {
+  min-width:62px;
+  text-align:center;
+  border-left:1px solid var(--soft);
+  padding-left:15px;
+}
+
+.time-box strong {
+  display:block;
+  font-family:'Cormorant Garamond', serif;
+  font-size:30px;
+  color:var(--olive);
+}
+
+.time-box small {
+  text-transform:uppercase;
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+.place-card {
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:20px;
+  align-items:center;
+  text-align:left;
+}
+
+.place-info {
+  display:flex;
+  align-items:center;
+  gap:22px;
+}
+
+.place-name {
+  font-family:'Cormorant Garamond', serif;
+  font-size:25px;
+  color:var(--olive);
+  font-weight:600;
+}
+
+.place-address {
+  font-family:'Cormorant Garamond', serif;
+  font-size:21px;
+  margin-top:2px;
+}
+
+.details-grid {
+  max-width:780px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:0;
+}
+
+.detail {
+  padding:10px 26px;
+  border-right:1px solid var(--soft);
+  text-align:left;
+}
+
+.detail:last-child { border-right:0; }
+
+.detail-icon {
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  background:var(--olive);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:27px;
+  margin-bottom:12px;
+}
+
+.detail h3 {
+  margin:0 0 8px;
+  font-family:'Cormorant Garamond', serif;
+  color:var(--olive);
+  font-size:25px;
+}
+
+.detail p {
+  margin:0;
+  line-height:1.55;
+  font-family:'Cormorant Garamond', serif;
+  font-size:18px;
+}
+
+.rsvp-card {
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:22px;
+  align-items:center;
+  text-align:left;
+}
+
+.rsvp-card p {
+  margin:0;
+  font-family:'Cormorant Garamond', serif;
+  font-size:21px;
+  line-height:1.45;
+}
+
+.audio-panel {
+  max-width:600px;
+  margin:24px auto 0;
+  padding:18px;
+  border:1px solid var(--soft);
+  border-radius:24px;
+  background:#fffdf8;
+}
+
+.audio-panel audio {
+  width:100%;
+  margin-top:10px;
+}
+
+.final {
+  font-family:'Cormorant Garamond', serif;
+  color:var(--olive);
+  font-size:23px;
+  line-height:1.4;
+  margin:0 auto;
+  max-width:740px;
+}
+
+.footer-name {
+  font-family:'Great Vibes', cursive;
+  color:var(--olive);
+  font-size:54px;
+  margin-top:24px;
+}
+
+.fade {
+  opacity:0;
+  transform:translateY(18px);
+  transition:1s ease;
+}
+
+.fade.show {
+  opacity:1;
+  transform:translateY(0);
+}
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(22px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+@media(max-width:760px) {
+  .page { max-width:100%; }
+  .intro-title { font-size:58px; }
+  .intro-sub { font-size:22px; }
+  .hero { height:520px; padding:36px 18px; }
+  .hero h1 { font-size:66px; }
+  .hero-sub { font-size:26px; }
+  .section { padding:38px 20px; }
+  .story { font-size:29px; }
+  .date-card, .place-card, .rsvp-card {
+    grid-template-columns:1fr;
+    text-align:center;
+  }
+  .date-left, .place-info {
+    justify-content:center;
+    flex-direction:column;
+    text-align:center;
+  }
+  .countdown {
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .time-box {
+    border-left:0;
+    border:1px solid var(--soft);
+    border-radius:18px;
+    padding:12px 8px;
+    min-width:64px;
+    background:#fffdf8;
+  }
+  .details-grid {
+    grid-template-columns:1fr;
+    gap:18px;
+  }
+  .detail {
+    border-right:0;
+    border-bottom:1px solid var(--soft);
+    text-align:center;
+  }
+  .detail:last-child { border-bottom:0; }
+  .detail-icon { margin:0 auto 12px; }
+  .flower {
+    width:160px;
+    height:160px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="intro" id="intro">
+  <div class="intro-card">
+    <p class="intro-title">Belén & Diego</p>
+    <p class="intro-sub">Tenemos una invitación para ti</p>
+    <button id="startBtn">Abrir invitación con música ♪</button>
+  </div>
+</div>
+
+<audio id="bgAudio" preload="auto" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="page">
+  <div class="flower f1"></div>
+  <div class="flower f2"></div>
+  <div class="flower f3"></div>
+  <div class="flower f4"></div>
+
+  <header class="hero">
+    <div class="hero-content">
+      <h1>Belén & Diego</h1>
+      <div class="divider"><span></span><b class="heart">♡</b><span></span></div>
+      <p class="hero-sub">Nos casamos</p>
+      <button class="music-btn" id="musicBtn">Reproducir música ♪</button>
+    </div>
+  </header>
+
+  <section class="section fade">
+    <p class="story">Nuestra historia continúa,<br>y queremos celebrarla contigo.</p>
+    <div class="gold-line"><span></span><b class="heart">♥</b><span></span></div>
+  </section>
+
+  <section class="section small-pad fade">
+    <p class="section-title">La fecha</p>
+    <div class="gold-line"><span></span><b class="heart">♥</b><span></span></div>
+
+    <div class="card date-card">
+      <div class="date-left">
+        <div class="icon-circle">▣</div>
+        <div>
+          <div class="date-main">06 de febrero de 2027</div>
+          <div class="date-sub">Sábado</div>
+        </div>
+      </div>
+
+      <div class="countdown">
+        <div class="time-box"><strong id="days">0</strong><small>días</small></div>
+        <div class="time-box"><strong id="hours">0</strong><small>horas</small></div>
+        <div class="time-box"><strong id="minutes">0</strong><small>min</small></div>
+        <div class="time-box"><strong id="seconds">0</strong><small>seg</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade">
+    <p class="section-title">Lugar</p>
+    <div class="gold-line"><span></span><b class="heart">♥</b><span></span></div>
+
+    <div class="card place-card">
+      <div class="place-info">
+        <div class="icon-circle">⌖</div>
+        <div>
+          <div class="place-name">Kiel Restaurant Mar y Tierra</div>
+          <div class="place-address">Camino a Chinquihue KM 8,<br>Puerto Montt</div>
+        </div>
+      </div>
+      <a class="btn" href="https://maps.google.com/?q=Restaurant+Kiel+Puerto+Montt+Camino+a+Chinquihue+KM+8" target="_blank">Ver ubicación</a>
+    </div>
+  </section>
+
+  <section class="section fade">
+    <p class="section-title">Detalles</p>
+    <div class="gold-line"><span></span><b class="heart">♥</b><span></span></div>
+
+    <div class="details-grid">
+      <div class="detail">
+        <div class="detail-icon">♔</div>
+        <h3>Vestimenta</h3>
+        <p>Formal.<br>Queremos que te sientas elegante y cómodo para esta ocasión especial.</p>
+      </div>
+      <div class="detail">
+        <div class="detail-icon">☾</div>
+        <h3>Sin niños</h3>
+        <p>Aunque nos encantan, esta será una celebración solo para adultos.</p>
+      </div>
+      <div class="detail">
+        <div class="detail-icon">⌑</div>
+        <h3>Regalos</h3>
+        <p>Tu presencia es lo más importante para nosotros. Si deseas hacernos un regalo, puedes hacerlo mediante transferencia bancaria. Los datos serán compartidos próximamente.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section fade">
+    <p class="section-title">Confirma tu asistencia</p>
+    <div class="gold-line"><span></span><b class="heart">♥</b><span></span></div>
+
+    <div class="card rsvp-card">
+      <p>Agradeceremos confirmar tu asistencia antes del <strong>31 de diciembre de 2026</strong>.</p>
+      <a class="btn" href="#" target="_blank">Confirmar asistencia</a>
+    </div>
+
+    <div class="audio-panel">
+      <strong>Nuestra canción</strong><br>
+      <span>Chayanne — Dejaría Todo</span>
+      <audio id="visibleAudio" controls loop>
+        <source src="song.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+  </section>
+
+  <section class="section fade">
+    <p class="final">¡Nos hace muy felices que seas parte de este momento tan especial para nosotros!</p>
+    <div class="footer-name">Belén & Diego</div>
+  </section>
+</div>
+
+<script>
+const intro = document.getElementById('intro');
+const startBtn = document.getElementById('startBtn');
+const musicBtn = document.getElementById('musicBtn');
+const bgAudio = document.getElementById('bgAudio');
+const visibleAudio = document.getElementById('visibleAudio');
+
+async function startInvitation() {
+  intro.classList.add('hide');
+  try {
+    bgAudio.volume = 0.55;
+    await bgAudio.play();
+    musicBtn.textContent = "Pausar música";
+  } catch(e) {
+    // En algunos móviles, incluso con clic, puede requerir usar el reproductor visible.
+  }
+}
+
+async function toggleMusic() {
+  try {
+    if (bgAudio.paused) {
+      bgAudio.volume = 0.55;
+      await bgAudio.play();
+      musicBtn.textContent = "Pausar música";
+    } else {
+      bgAudio.pause();
+      musicBtn.textContent = "Reproducir música ♪";
+    }
+  } catch(e) {}
+}
+
+startBtn.addEventListener('click', startInvitation);
+musicBtn.addEventListener('click', toggleMusic);
+
+visibleAudio.addEventListener('play', () => {
+  bgAudio.pause();
+  musicBtn.textContent = "Reproducir música ♪";
+});
+
+const targetDate = new Date("2027-02-06T00:00:00").getTime();
+
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
+
+  if (distance <= 0) {
+    ['days','hours','minutes','seconds'].forEach(id => document.getElementById(id).textContent = '0');
+    return;
+  }
+
+  document.getElementById('days').textContent = Math.floor(distance / (1000 * 60 * 60 * 24));
+  document.getElementById('hours').textContent = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  document.getElementById('minutes').textContent = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  document.getElementById('seconds').textContent = Math.floor((distance % (1000 * 60)) / 1000);
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) entry.target.classList.add('show');
+  });
+}, { threshold:.18 });
+
+document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
