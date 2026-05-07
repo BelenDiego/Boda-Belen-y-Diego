@@ -305,6 +305,38 @@ button:hover, .btn:hover {
   opacity:.86;
 }
 
+.wedding-hours {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px 14px;
+  margin-top:10px;
+}
+
+.wedding-hours div {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 12px;
+  border:1px solid rgba(201,169,106,.38);
+  border-radius:999px;
+  background:rgba(255,250,242,.64);
+}
+
+.wedding-hours span {
+  font-size:13px;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--olive);
+  opacity:.78;
+}
+
+.wedding-hours strong {
+  font-family:'Cormorant Garamond', serif;
+  font-size:21px;
+  font-weight:600;
+  color:var(--gold-dark);
+}
+
 .date-sub {
   font-family:'Cormorant Garamond', serif;
   font-size:22px;
@@ -624,7 +656,11 @@ button:hover, .btn:hover {
         <div class="icon-circle">▣</div>
         <div>
           <div class="date-main">06 de febrero de 2027</div>
-          <div class="date-sub">Sábado · 18:00 hrs</div>
+          <div class="date-sub">Sábado</div>
+          <div class="wedding-hours">
+            <div><span>Hora de inicio</span><strong>18:00 PM</strong></div>
+            <div><span>Hora de término</span><strong>03:00 AM</strong></div>
+          </div>
           <div class="date-note">No llegues tarde, queremos vivir este momento contigo desde el comienzo.</div>
         </div>
       </div>
